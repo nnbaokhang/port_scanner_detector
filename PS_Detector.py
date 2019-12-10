@@ -36,11 +36,12 @@ def recordConnection(src_ip):
 	if hs.find(src_ip):
 		incrementFanOutDict(src_ip, time.time())
 	else:
+		print(src_ip)
 		hs.insert(src_ip, time.time())
 		keyList.append(src_ip)
 		#Save this ip address to database
-		badIp=Badip(ip=src_ip)
-		badIp.save()
+		suspiciousIP=Suspiciousips(ip=src_ip,reason="PORT_SCANNER | NMAP")
+		suspiciousIP.save()
 	#print("Record added successfully")
 
 def incrementFanOutDict(src_ip, ts):

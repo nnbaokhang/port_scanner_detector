@@ -13,6 +13,8 @@ class Header(Document):
 
 #We want to see traffic coming through our monitor dashboard
 
-#Badip collection
-class Badip(Document):
+#Suspicious ip collection
+class Suspiciousips(Document):
     ip = StringField(required=True, max_length=15)
+    reason = StringField()
+    v = IntField(db_field='__v')
